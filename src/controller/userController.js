@@ -34,6 +34,48 @@ const createUser = async function(req, res) {
     }
 }
 
+
+const loginUser = async function(req, res) {
+    try {
+        let user = req.body
+
+        if (Object.keys(user) == 0) {
+            return res.status(400).send({ status: false, msg: "please provide data" })
+        }
+
+        let userName = req.body.email
+        let password = req.body.password
+
+        if (!userName) {
+            return res.status(400).send({ status: false, msg: "userName is required" })
+        }
+
+        if (!password) {
+            return res.status(400).send({ status: false, msg: "password is required" })
+        }
+
+        let userDetailsFind = await userModel.findOne({ email: userName, password: password })
+        if (!userDetailsFind) {
+            return res.status(400).send({ status: false, msg: "userName or password is not correct" })
+        };
+
+        let token = jwt.sign({
+            userId: userDetailsFind._id,
+          
+        }, "rushi-159");
+
+        
+        res.status(200).send({
+            status: true,
+            msg: "user login successfully",
+            data: token
+        })
+    } catch (error) {
+        return res.status(500).send({ status: false, msg: error.message })
+    }
+
+}
+
 const getUser=async function(req,res){
     try{
           let data=req.body
@@ -106,6 +148,7 @@ const deleteUser=async function(req,res){
 
 
 module.exports.createUser = createUser
+module.exports.loginUser = loginUser
 module.exports.getUser=getUser
 module.exports.updateUser=updateUser
 module.exports.deleteUser=deleteUser
