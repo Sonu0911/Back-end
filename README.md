@@ -33,7 +33,7 @@ Validation: email must be mandatory.
 Optional: save password in the database encrypted.
 
 
-
+login that user.
 
 
 -create api for get user : 
