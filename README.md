@@ -22,7 +22,7 @@ Requested data :  {
 
 “last_name” : “chaudhary”,
 
-“email” : “vyom@itservicesindia.com”,
+“email” : “vyom@yyindia.com”,
 
 “Password” : “123”
 
@@ -44,7 +44,7 @@ Get user as per email id and password
 
 Requested data : {
 
-“email” : “vyom@itservicesindia.com”,
+“email” : “vyom@yyindia.com”,
 
 “password” : “123”
 
